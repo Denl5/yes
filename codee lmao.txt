@@ -1,0 +1,548 @@
+from ast import Continue, Str
+from configparser import ConfigParser
+from numba import jit
+from calendar import day_abbr, month
+from cgitb import handler
+from ctypes.wintypes import HANDLE
+import imp
+from lib2to3.pgen2.token import N_TOKENS
+from random import randint
+from time import sleep
+from msilib.schema import Control
+from pydoc import importfile
+import time
+from time import sleep, time
+from tkinter import SCROLL
+from turtle import done
+from numpy import full, short
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.service import Service
+from selenium import webdriver
+from sqlalchemy import false
+from webdriver_manager.chrome import ChromeDriverManager
+import requests, time
+import clipboard
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+import json
+from config import institution
+from config import transitnumber
+from config import accountnumber
+from config import Address
+from config import postalcode
+from config import city
+from config import FirstName
+from config import fullname
+from config import LastName
+from config import CompanyNumber
+from config import OtherMemberShipOrganizations
+from config import shorteneddescriptor
+from config import renamethesitetocom
+from config import Randomsentence
+from config import Canadacountry
+from config import PhoneCountry
+from config import PhoneNumber
+from config import Replacementemailstripe
+from config import StripePassword
+from config import businesswebsite
+from config import productdescription
+from config import phoneverificationcountry
+from config import phoneverificationbox
+
+chromedriver_path = 'C:\webdriver\chromedriver.exe'
+brave_path = 'C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe'
+
+option = webdriver.ChromeOptions()
+option.binary_location = brave_path
+browser = webdriver.Chrome(executable_path=chromedriver_path, options=option)
+option.add_argument("--incognito")
+option.add_argument("--headless")
+browser.maximize_window()
+
+
+# From Config - Config.py #
+#####################################################################################################################################################
+
+Institution = institution            #####################################################################
+Transitnumber = transitnumber         ############################
+AccountNumber = accountnumber    ####################################
+
+Address = Address     #########################################
+PostalCode = postalcode          ########################################
+City = city    # ########################
+
+FirstName = FirstName
+LastName = LastName
+
+FullName = fullname
+
+
+CompanyNumber = CompanyNumber       #####################################
+OtherMemberShipOrganizations = OtherMemberShipOrganizations
+Shorteneddescriptor = shorteneddescriptor
+
+Renamethesitetocom = renamethesitetocom    #############################################
+
+Randomsentence = Randomsentence
+
+Canadacountry = Canadacountry
+PhoneNumber = PhoneNumber
+PhoneCountry = PhoneCountry
+
+Replacementemailstripe = Replacementemailstripe        ################################### you can use the same email over and over agian (make sure it is a @gmail domain)
+
+StripePassword = StripePassword
+BusinessWebsite = businesswebsite             ############################################
+ProductDescription = productdescription
+
+phoneverificationcountry = phoneverificationcountry
+phoneverificationbox = phoneverificationbox
+
+#######################################################################################################################################################
+
+@jit(nopython = True)
+def sse_numba (a):
+    result = 0
+    size = len(a)
+    for i in range(size):
+        result += a[i]*a[i]
+    return result
+
+browser.get('https://emailfake.com')
+
+emailcopier = WebDriverWait(browser,100).until(
+    EC.presence_of_element_located((By.ID, 'copbtn'))
+)
+emailcopier.click()
+
+browser.get('https://stripe.com')
+
+startnowbutton = WebDriverWait(browser,100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/section[1]/div/div[2]/div/div/div/section/footer/div/a[1]'))
+    )
+startnowbutton.click()
+
+emailbox = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="register-email-input"]'))
+    )
+emailbox.send_keys(Keys.CONTROL, 'v')
+
+fullname = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div[2]/div[2]/div[1]/div/div/form/div/div/div[2]/div/div/div[2]/div/div/div/div/div/div/div[1]/input'))
+    )
+fullname.send_keys(FullName)
+
+
+selectcountry = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div[2]/div[2]/div[1]/div/div/form/div/div/div[3]/div/div/div[2]/div/div/div/div/div/div/div[1]/div/div/div[1]/button/div[1]/div/span/div/div/div[2]'))
+    )
+selectcountry.click()
+
+selectcountrysearch = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div/div/span/div/div/div[1]/div/div/input'))
+    )
+selectcountrysearch.click()
+selectcountrysearch.send_keys(Canadacountry)
+
+Canada = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div/div/span/div/div/div[1]/div/div/div/ul/li/div/div'))
+    )
+Canada.click()
+
+acceptall = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/button'))
+    )
+acceptall.click()
+
+passwordbox = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.ID, 'register-password-input-with-description'))
+    )
+passwordbox.click()
+passwordbox.send_keys(StripePassword)
+
+tickthebox = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div[2]/div[2]/div[1]/div/div/form/div/div/div[5]/div/div/div/div/div/div/div/div[1]/div/div[1]/div/input'))
+    )
+tickthebox.click()
+
+sleep(5)
+
+submitsignup123 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div[2]/div[2]/div[1]/div/div/form/div/div/div[6]/div/div/div/div/div/div/div[1]/button'))
+    )
+submitsignup123.click()
+
+sleep(15)
+
+browser.get('https://dashboard.stripe.com/test/dashboard')
+
+submitsignup1234 = WebDriverWait(browser, 15).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[3]/nav/div/div[2]/div/div[1]/a/div'))
+    )
+
+browser.get('https://dashboard.stripe.com/test/dashboard')
+    
+submitsignup1235 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[3]/nav/div/div[2]/div/div[1]/a/div'))
+    )
+    
+browser.get('https://emailfake.com')
+
+stripemail = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div/div/div[2]/div[2]/div[4]/div[3]/table/tbody/tr[1]/td/table/tbody/tr/td/table[4]/tbody/tr[1]/td[2]/table/tbody/tr/td/a'))
+    )                    
+stripemail.click()
+
+sleep(5)
+browser.switch_to.window(browser.window_handles[1])
+
+browser.get("https://dashboard.stripe.com/account/onboarding/business-structure")
+
+addressbox = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div[1]/div/div[1]/input'))
+    )                    
+addressbox.send_keys(Address)
+
+addressbox2 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[1]/input'))
+    )
+addressbox2.send_keys(Address)
+
+postalcode = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[4]/div/div/div[1]/input'))
+    )                    
+postalcode.send_keys(PostalCode)
+
+city = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[2]/div/div/div[1]/input'))
+    )                    
+city.send_keys(City)
+
+
+Province = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[3]/div/div[1]/div[1]/select'))
+    )                    
+Province.click()
+
+Provinceoption = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div/div/div[3]/div/div[1]/div[1]/select/option[8]'))
+    )                    
+Provinceoption.click()
+
+continue1 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[2]/div/div/div[1]/button'))
+    )                    
+continue1.click()
+
+
+firstnameactivation = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[1]/div/div[2]/div[1]/div[2]/div/div/div/div/div/div/div/div[1]/div/div[1]/input'))
+    )                    
+firstnameactivation.send_keys(FirstName)
+
+
+surnameactivation = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[1]/div[2]/div/div/div/div/div/div/div/div[2]/div/div[1]/input'))
+    )                    
+surnameactivation.send_keys(LastName)
+
+
+dob = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[1]/div/div[2]/div[3]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[1]/div/div[1]/div/input'))
+    )                    
+dob.send_keys("03041992")
+
+replacementemail = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div[2]/div/div/div/div/div[1]/div/div[1]/input'))
+    )                    
+replacementemail.click()
+replacementemail.send_keys(Keys.CONTROL, 'a')
+replacementemail.send_keys(Keys.DELETE)
+replacementemail.send_keys(Replacementemailstripe)
+
+continue2 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[2]/div/div/div/div[1]/div/div[1]/button'))
+    )                    
+continue2.click()
+
+
+industry = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[1]/div/div/div/div/div[1]/div/div/div[1]/button'))
+    )                    
+industry.click()
+
+blogandwrittencontentsearch = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div[1]/div/div/input'))
+    )                    
+blogandwrittencontentsearch.click()
+blogandwrittencontentsearch.send_keys(OtherMemberShipOrganizations)
+
+blogandwrittencontent = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div[1]/div/div/div/ul/li[2]/div/div'))
+    )                    
+blogandwrittencontent.click()
+
+businesswebsite = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[1]/input'))
+    )                    
+businesswebsite.send_keys(BusinessWebsite)
+
+productdescription = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[3]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[1]/textarea'))
+    )                    
+productdescription.send_keys(ProductDescription)
+
+continue3 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[2]/div/div/div[1]/button'))
+    )                    
+continue3.click()
+
+
+renamethesitetocom = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div/div[1]/input'))
+    )                    
+renamethesitetocom.click()
+renamethesitetocom.send_keys(Keys.CONTROL, 'a')
+renamethesitetocom.send_keys(Keys.DELETE)
+renamethesitetocom.send_keys(Renamethesitetocom)
+
+Supportphonenumber = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[1]/div/div[2]/div[3]/div/div[2]/div/div/div/div/div[1]/div/div[1]/div/div[1]/input'))
+    )                    
+Supportphonenumber.click()
+Supportphonenumber.send_keys(CompanyNumber)
+
+
+shorteneddescriptor = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[1]/div/div[2]/div[2]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[1]/input'))
+    )                    
+shorteneddescriptor.click()
+shorteneddescriptor.send_keys(Shorteneddescriptor)
+
+continue9 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/form/span/div[2]/div/div/div/div/div/div[1]/button'))
+    )                    
+continue9.click()
+########################################################## BANK INFORMATION ##################################################################################################################################
+
+
+transitnumber = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/form/div[1]/div/div/div[2]/div[3]/div[1]/div[2]/div/div/div/div/div/div/div/div/div/div[1]/input'))
+    )                    
+transitnumber.click()
+transitnumber.send_keys(Transitnumber)
+
+
+Institution = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/form/div[1]/div/div/div[2]/div[3]/div[2]/div[2]/div/div/div/div/div/div/div/div/div/div[1]/input'))
+    )                    
+Institution.send_keys(institution)
+
+AccountNumberBox = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/form/div[1]/div/div/div[2]/div[4]/div/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div/div[1]/input'))
+    )                    
+AccountNumberBox.send_keys(AccountNumber)
+
+AccountNumberBoxConfirm = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/form/div[1]/div/div/div[2]/div[5]/div[2]/div/div/div/div/div/div/div[1]/input'))
+    )                    
+AccountNumberBoxConfirm.send_keys(AccountNumber)
+
+ContinueConfirm = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/div/div[2]/form/div[2]/div/div/div/div/div/div[1]/button'))
+    )                    
+ContinueConfirm.click()
+########################################################################################################################################################################################################################
+#SMS AUTH
+
+
+Usesms = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[1]/button/div/div[2]'))
+    )                    
+Usesms.click()
+
+########################THIS IS SET TO SLEEP 1000###############################
+
+selectcountry2 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div/div[2]/div/div/form/div/div/fieldset/div/div/div/div[2]/div/div/div/div/div[1]/div/div[1]/div/div[1]/div/div/div[1]/button'))
+    )                    
+selectcountry2.click()
+
+
+phonecountrysearch = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[4]/div/span/div/div/div[1]/div/div/input'))
+    )                    
+phonecountrysearch.click()
+phonecountrysearch.send_keys(PhoneCountry)
+
+
+selectcountry3 = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[4]/div/span/div/div/div[1]/div/div/div/ul/li/div/div'))
+    )                    
+selectcountry3.click()
+
+phonenumbertype = WebDriverWait(browser, 100).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div/div[2]/div/div/form/div/div/fieldset/div/div/div/div[2]/div/div/div/div/div[1]/div/div[1]/input'))
+    )                    
+phonenumbertype.send_keys(Keys.CONTROL, 'a')
+phonenumbertype.send_keys(Keys.DELETE)
+phonenumbertype.send_keys(PhoneNumber)
+
+Confirmphonenumber = WebDriverWait(browser, 100).until(
+    EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div/div[3]/div/div/div/div[2]/div/div[1]/button'))
+    )                    
+Confirmphonenumber.click()
+
+resendverificationcode = WebDriverWait(browser, 100).until(
+    EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div/div[2]/div/div/div/div/div/span/span[2]/span[2]/a'))
+    )                    
+resendverificationcode.click()
+
+ToMakeSureThePhoneNumberIsVerified = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div/div[2]/div/div/div/div/div[2]/span/div/div/div/div[2]/div/div/div[2]/div[2]/div/div/div/div[1]/button'))
+    )                    
+    
+Done = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="merch"]/div[3]/div[3]/div/span/div/div/div/div/div[3]/div/div/div/div/div/div[1]/button'))
+    )                    
+Done.click()
+
+Continue5 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/form/span/div[2]/div/div/div/div/div/div[1]/button'))
+    )                    
+Continue5.click()
+
+summary = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div[1]/div/div/div/div[17]/a/div/div[2]'))
+    )                    
+summary.click()
+
+submitbutton = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div[2]/div/div/div/div/div/div/div[17]/div/div/div[1]/button'))
+    )                    
+submitbutton.click()
+
+distractionforsubmitbutton1 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[3]/nav/div/div[2]/div/div[1]/a/div'))
+    )                    
+
+browser.get('https://dashboard.stripe.com/settings/integration')
+
+showadvancedoptions = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[1]/main/div[2]/div/div[2]/div[2]/button/div/div[2]/span/span/span'))
+    )                    
+showadvancedoptions.click()
+
+handlecard = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[1]/main/div[2]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div[1]/input'))
+    )                    
+handlecard.click()
+
+understand1 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.ID, 'checkbox14'))
+    )                    
+understand1.click()
+
+understand2 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.ID, 'checkbox15'))
+    )                    
+understand2.click()
+
+understand3 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.ID, 'checkbox16'))
+    )                    
+understand3.click()
+
+striperandomsentencebutton = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@id="pans-reason"]'))
+    )                    
+striperandomsentencebutton.click()
+striperandomsentencebutton.send_keys(Keys.ARROW_UP)
+striperandomsentencebutton.send_keys(Keys.ARROW_UP)
+striperandomsentencebutton.send_keys(Keys.ENTER)
+
+striperandomsentencetext = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div[2]/div/span/div[5]/div[2]/div/div[1]/textarea'))
+    )                    
+striperandomsentencetext.send_keys(Randomsentence)
+
+
+Continue6 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[3]/div/span/div/div/div/div[3]/div/div/div[1]/div/div[1]/button'))
+    )                    
+Continue6.click()
+
+
+Next = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[4]/div/span/div/div/div/div[3]/div/div/div[1]/div/div[1]/button'))
+    )                    
+Next.click()
+
+Phoneverificationcountry = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.ID, 'Select2'))
+    )                    
+Phoneverificationcountry.send_keys(Keys.TAB)
+Phoneverificationcountry.send_keys(Keys.TAB)
+Phoneverificationcountry.send_keys(Keys.TAB)
+Phoneverificationcountry.send_keys(Keys.TAB)
+Phoneverificationcountry.send_keys(Keys.TAB)
+Phoneverificationcountry.send_keys(Keys.ENTER) 
+Phoneverificationcountry.send_keys(phoneverificationcountry)
+
+Phoneverificationbox = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div[2]/form/div/div/fieldset/div/div/div/div[2]/div/div/div/div/div[1]/input'))
+    )                    
+Phoneverificationbox.click()
+Phoneverificationbox.send_keys(PhoneNumber)
+
+Phoneverificationcontinue = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div[3]/div/div/div/div/div/div[1]/button'))
+    )                    
+Phoneverificationcontinue.click()
+
+resendverificationcode2 = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div/div/div/div/div/div/div/div[2]/div/span/span/span/a/span'))
+    )                    
+resendverificationcode2.click()
+
+
+explicitwaiturlforthesitetoloadproperly = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[3]/nav/div/div[10]/div/div[1]/a/div'))
+    )                    
+
+browser.get('https://dashboard.stripe.com/apikeys')
+
+RevealSKlivekey = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/span/div/div/div/div[1]/div/div/div[1]/main/div/div/div/span/div/div[2]/div/div[2]/table/tbody/tr[2]/td[2]/div/span/div/div/div[1]/button'))
+    )                    
+RevealSKlivekey.click()
+
+Reveal = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div/div/div/div[3]/div/div/div/div[2]/div/div[1]/button'))
+    )                    
+Reveal.click()
+
+CopySKkey = WebDriverWait(browser, 1000).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div[2]/div/span/div/div/div/div/div[2]/div/div/fieldset[1]/div/div/div[2]/div/div/div/div/div/div[1]/div/div/button/div'))
+    )                    
+CopySKkey.click()
+
+print("Open Results.txt You Moron")
+
+validtoken = browser.find_element_by_xpath('/html/body/div[3]/div[2]/div/span/div/div/div/div/div[2]/div/div/fieldset[1]/div/div/div[2]/div/div/div/div/div/div[1]/div/div/button/div/span/text()')
+text = (validtoken)
+
+with open('results.txt','w') as g:
+   g.write(text)
+sleep(9000)
+
+
+
+# this project kept me confused for 11 hours of my life, i am getting 2 hours sleep. Leak this shit and you will fucking regret it
+# -03/02/2022 04:59am - mxzin and Denl5 :*``
